@@ -37,15 +37,10 @@ head(book_titles)
 ```
 ## Data Preparation 
 ```{r}
-#Bind the data
-reviews <- merge(poetry_review, book_titles, by="book_id")
-View(reviews)
-str(reviews)
 
-
-#Combine columns that are helpful 
-reviews_2 <- subset(reviews, select = c("title", "average_rating", "publisher", "rating", "review_text", "format", "ratings_count", "text_reviews_count", "num_pages") )
-view(reviews_2)
+#Remove columns 
+reviews <- book_spoilers[ c("review_sentences", "rating", "has_spoiler") ]
+head(reviews)
 
 #Remove NAs from the dataset 
 str(reviews_2)
@@ -53,6 +48,14 @@ md.pattern(reviews_2, rotate.names = TRUE)
 reviews_3 <- reviews_2[complete.cases(reviews_2), ]
 md.pattern(reviews_3, rotate.names = TRUE)
 View(reviews_3)
+
+#Factor 
+review$has_spoilers  <- fct_collapse(review$has_spoilers,
+                           Yes = "Yes", 
+                           No ="No",
+                        other = c("Other"))
+
+```
 
 ```
 
