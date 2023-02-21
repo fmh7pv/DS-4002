@@ -43,14 +43,14 @@ reviews <- book_spoilers[ c("review_sentences", "rating", "has_spoiler") ]
 head(reviews)
 
 #Remove NAs from the dataset 
-str(reviews_2)
+str(reviews)
+md.pattern(reviews, rotate.names = TRUE)
+reviews_2 <- reviews[complete.cases(reviews), ]
 md.pattern(reviews_2, rotate.names = TRUE)
-reviews_3 <- reviews_2[complete.cases(reviews_2), ]
-md.pattern(reviews_3, rotate.names = TRUE)
-View(reviews_3)
+View(reviews_2)
 
 #Factor 
-review$has_spoilers  <- fct_collapse(review$has_spoilers,
+reviews_2$has_spoilers  <- fct_collapse(reviews_2$has_spoilers,
                            Yes = "Yes", 
                            No ="No",
                         other = c("Other"))
@@ -63,7 +63,7 @@ review$has_spoilers  <- fct_collapse(review$has_spoilers,
 ```{r}
 # Remove common words, puncutation, white, space,  
 
-review_corpus = VCorpus(VectorSource(reviews_3$review_text))
+review_corpus = VCorpus(VectorSource(reviews_2$review_text))
 review_corpus = tm_map(review_corpus, content_transformer(tolower))
 review_corpus = tm_map(review_corpus, removeNumbers)
 review_corpus = tm_map(review_corpus, removePunctuation)
