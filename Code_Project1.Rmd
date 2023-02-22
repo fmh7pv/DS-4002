@@ -29,35 +29,48 @@ library("mice")
 
 ## Upload data 
 ```{r}
-poetry_review <- read_csv("poetry_review.csv")
-head(poetry_review)
-
-book_titles <- read_csv("book_titles.csv")
-head(book_titles)
+book_spoilers <-read.csv("book_spoilers.csv")
 ```
+
 ## Data Preparation 
 ```{r}
 
-#Remove columns 
-reviews <- book_spoilers[ c("review_sentences", "rating", "has_spoiler") ]
+#Subset variables of interest 
+reviews <- book_spoilers[ c("review_sentences", "rating", "has_spoiler", "book_id") ]
 head(reviews)
 
 #Remove NAs from the dataset 
-str(reviews)
 md.pattern(reviews, rotate.names = TRUE)
 reviews_2 <- reviews[complete.cases(reviews), ]
 md.pattern(reviews_2, rotate.names = TRUE)
-View(reviews_2)
+head(reviews_2)
 
-#Factor 
-reviews_2$has_spoilers  <- fct_collapse(reviews_2$has_spoilers,
-                           Yes = "Yes", 
-                           No ="No",
-                        other = c("Other"))
+#Factor the variables 
+
+reviews_2$has_spoiler  <- fct_collapse(reviews_2$has_spoiler,
+                           True = "Yes", 
+                           False ="No")
+
+table(reviews_2$has_spoiler)
 
 ```
 
+#New Columns 
+```{r}
+#We have multiple ratings for the same book, function creates a column that shows thh average rating of each book 
+review_3 <- reviews_2 %>%
+ group_by(book_id) %>%
+  mutate(average_rating = mean(ratings)) %>%
+  as.data.frame()
+review_3 
+
+# This column assess whether the mean of the book ratings is higher than four (The ratings 4 and 5 are above while the rest of the variables are below ) 
+
+review_3 <- review_3 %>% 
+  left_join(review_3) %>% 
+  mutate(above_average = if_else(4 >= average_rating, "Yes", "No"))
 ```
+
 
 ## Cleaning up Text Data
 ```{r}
@@ -73,19 +86,29 @@ review_corpus <- tm_map(review_corpus, stemDocument)
 inspect(review_corpus[2])
 
 
-review_dtm <- DocumentTermMatrix(review_corpus)
-review_dtm
+#Breaking down each sentence to words 
+token <- review_corpus %>% unnest_tokens(word,review_sentences)
 
-inspect(review_dtm[500:505, 500:505])
 
-review_dtm = removeSparseTerms(review_dtm, 0.99)
-review_dtm
+(head(get_sentiments("afinn"),10))
+review_sentiment <- token %>% inner_join(get_sentiments("afinn"))
 
-inspect(review_dtm[2,1:20])
 
-findFreqTerms(review_dtm, 1000)
+# summarise the sentiment value of each review
+review_sentiment <- review_sentiment %>% group_by(review_sentences, rating, has_spoiler, book_id) %>% 
+  summarise(value = sum(value)) %>% ungroup()
 
-freq = data.frame(sort(colSums(as.matrix(review_dtm)), decreasing=TRUE))
-wordcloud(rownames(freq), freq[,1], max.words=100, colors=brewer.pal(1, "Dark2"))
+(head(review_sentiment,10))
 ```
+
+#One hot encode 
+```{r}
+#This basically makes our non numeric variables a binary 0 or 1 
+
+review_sentiment_1h <- one_hot(as.data.table(review_sentiment),cols = "has_spoiler", "above_average",sparsifyNAs = TRUE,naCols = FALSE,dropCols = TRUE,dropUnusedLevels = TRUE)
+
+
+
+```
+
 
