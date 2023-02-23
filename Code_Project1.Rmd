@@ -1,6 +1,6 @@
 no---
 title: "Project 1"
-author: "Fadumo Hussein"
+author: "Fadumo Hussein, Amshala Bharathan, Samuel Richardson"
 date: "2023-02-09"
 output: html_document
 ---
