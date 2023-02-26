@@ -1,0 +1,149 @@
+no---
+title: "Project 1"
+author: "Fadumo Hussein, Amshala Bharathan, Samuel Richardson"
+date: "2023-02-09"
+output: html_document
+---
+
+## Loading packages 
+
+```{r}
+#N Install
+install.packages("tm")  # for text mining
+install.packages("SnowballC") # for text stemming
+install.packages("wordcloud") # word-cloud generator 
+install.packages("RColorBrewer") # color palettes
+install.packages("syuzhet") # for sentiment analysis
+install.packages("ggplot2") # for plotting graphs
+install.packages("readr")  # for text mining
+install.packages("tidyverse")
+install.packages("mice")
+install.packages("forcats")
+install.packages("tidytext")
+# Load
+library("tm")
+library("SnowballC")
+library("wordcloud")
+library("RColorBrewer")
+library("syuzhet")
+library("ggplot2")
+library("readr")
+library("tidyverse")
+library("mice")
+library("forcats")
+library("tidytext")
+```
+
+## Upload data 
+```{r}
+book_spoilers <-read.csv("book_spoilers.csv")
+```
+## Data Preparation 
+```{r}
+#Subset variables of interest 
+reviews <- book_spoilers[ c("review_sentences", "rating", "has_spoiler", "book_id") ]
+head(reviews)
+#Remove NAs from the dataset 
+md.pattern(reviews, rotate.names = TRUE)
+reviews_2 <- reviews[complete.cases(reviews), ]
+md.pattern(reviews_2, rotate.names = TRUE)
+head(reviews_2)
+#Factor the variables 
+reviews_2$has_spoiler  <- fct_collapse(reviews_2$has_spoiler,
+                           True = "Yes", 
+                           False ="No")
+table(reviews_2$has_spoiler)
+```
+
+#New Columns 
+```{r}
+#We have multiple ratings for the same book, function creates a column that shows thh average rating of each book 
+review_3 <- reviews_2 %>%
+ group_by(book_id) %>%
+  mutate(average_rating = mean(rating)) %>%
+  as.data.frame()
+review_3 
+# This column assess whether the mean of the book ratings is higher than four (The ratings 4 and 5 are above while the rest of the variables are below ) 
+review_3 <- review_3 %>% 
+  left_join(review_3) %>% 
+  mutate(above_average = if_else(4 >= average_rating, "Yes", "No"))
+```
+
+## Cleaning up Text Data
+```{r}
+# Remove common words, puncutation, white, space, etc. 
+review_corpus <- VCorpus(VectorSource(reviews_2$review_sentences))
+review_corpus <- tm_map(review_corpus, content_transformer(tolower))
+review_corpus <- tm_map(review_corpus, removeNumbers)
+review_corpus <- tm_map(review_corpus, removePunctuation)
+review_corpus <- tm_map(review_corpus, removeWords, c("the", "and", stopwords("english")))
+review_corpus <- tm_map(review_corpus, stripWhitespace)
+review_corpus <- tm_map(review_corpus, stemDocument)
+inspect(review_corpus[1])
+#Breaking down each sentence to words 
+token <- review_corpus %>% unnest_tokens(word,review_sentences)
+(head(get_sentiments("afinn"),10))
+review_sentiment <- token %>% inner_join(get_sentiments("afinn"))
+# summarise the sentiment value of each review
+review_sentiment <- review_sentiment %>% group_by(review_sentences, rating, has_spoiler, book_id) %>% 
+  summarise(value = sum(value)) %>% ungroup()
+(head(review_sentiment,10))
+```
+
+#One hot encode 
+```{r}
+#This basically makes our non numeric variables a binary 0 or 1 
+review_sentiment_1h <- one_hot(as.data.table(review_sentiment),cols = "auto" ,sparsifyNAs = TRUE,naCols = FALSE,dropCols = TRUE,dropUnusedLevels = TRUE)
+```
+# Prevalence 
+
+```{r}
+(review_sentiment_1h$above_average_f<- cut(review_sentiment_1h$above_average_f,c(0,.43,1),labels = c(0,1)))#why the NA? If we want two segments we input three numbers, start, cut and stop values
+View(review_sentiment_1h$above_average_f)
+str(college_1h)
+#let's check the prevalence 
+(prevalence <- table(review_sentiment_1h$above_average_f)[[2]]/length(review_sentiment_1h$above_average_f))
+table(review_sentiment_1h$above_average_f)
+```
+
+#train test and tune 
+```{r}
+review_dt <- review_sentiment_1h[,-c("above_average")]
+view(review_dt)
+part_index_1 <- caret::createDataPartition(review_sentiment_1h$above_average_f,
+                                           times=1,#number of splits
+                                           p = 0.80,#percentage of split
+                                           groups=1,
+                                           list=FALSE)
+View(part_index_1)
+dim(review_dt)
+train <- review_dt[part_index_1,]#index the 80%
+tune_and_test <- review_dt[-part_index_1, ]#index everything but the 80%
+#The we need to use the function again to create the tuning set 
+tune_and_test_index <- createDataPartition(review_sentiment_1h$above_average_f,
+                                           p = .5,
+                                           list = FALSE,
+                                           times = 1)
+tune <- tune_and_test[tune_and_test_index, ]
+test <- tune_and_test[-tune_and_test_index, ]
+dim(train)
+dim(tune)
+dim(test)
+```
+
+#Model 
+```{r}
+logit_mod <- glm(above_average~value,data = data_train,family = binomial("logit"))
+summary(logit_mod)
+pred_logit <- predict(logit_mod,newdata = data_test,type = "response")
+```
+
+# Confusion Matrix 
+```{r}
+pred_class <- as.factor(if_else(pred_logit > 0.5, "Yes", "No"))
+# confusion matrix
+perf_logit1 <- confusionMatrix(data = pred_class, reference = data_test$above_average, 
+    positive = "Yes")
+perf_logit1
+```
+
