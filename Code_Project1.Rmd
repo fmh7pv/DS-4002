@@ -1,6 +1,6 @@
 no---
 title: "Project 1"
-author: "Fadumo Hussein, Amshala Bharathan, Samuel Richardson"
+author: "Fadumo Hussein"
 date: "2023-02-09"
 output: html_document
 ---
@@ -8,7 +8,7 @@ output: html_document
 ## Loading packages 
 
 ```{r}
-#N Install
+#Install Packages 
 install.packages("tm")  # for text mining
 install.packages("SnowballC") # for text stemming
 install.packages("wordcloud") # word-cloud generator 
@@ -36,27 +36,27 @@ library("tidytext")
 
 ## Upload data 
 ```{r}
-book_spoilers <-read.csv("book_spoilers.csv")
-book_spoliers <- book_spoliers[1:100,]
+book_spoilers <- book_spoilers[1:100,]
+View(book_spoilers)
 ```
 ## Data Preparation 
 ```{r}
 
 #Subset variables of interest 
 reviews <- book_spoilers[ c("review_sentences", "rating", "has_spoiler", "book_id") ]
-head(reviews)
+View(reviews)
 
 #Remove NAs from the dataset 
 md.pattern(reviews, rotate.names = TRUE)
 reviews_2 <- reviews[complete.cases(reviews), ]
 md.pattern(reviews_2, rotate.names = TRUE)
-head(reviews_2)
+View(reviews_2)
 
 #Factor the variables 
 
 reviews_2$has_spoiler  <- fct_collapse(reviews_2$has_spoiler,
-                           True = "Yes", 
-                           False ="No")
+                           Yes = "True", 
+                           No ="False")
 
 table(reviews_2$has_spoiler)
 
@@ -64,36 +64,64 @@ table(reviews_2$has_spoiler)
 
 #New Columns 
 ```{r}
-#We have multiple ratings for the same book, function creates a column that shows thh average rating of each book 
+#We have multiple ratings for the same book, function creates a column that shows the average rating of each book
+install.packages("tidyverse")
+library("tidyverse")
 review_3 <- reviews_2 %>%
  group_by(book_id) %>%
-  mutate(average_rating = mean(ratings)) %>%
+  mutate(average_rating = mean(rating)) %>%
   as.data.frame()
-review_3 
+review_3
 
 # This column assess whether the mean of the book ratings is higher than four (The ratings 4 and 5 are above while the rest of the variables are below ) 
 
 review_3 <- review_3 %>% 
   left_join(review_3) %>% 
-  mutate(above_average = if_else(4 >= average_rating, "Yes", "No"))
+  mutate(above_average = if_else(4 <= average_rating, "Yes", "No"))
+
+(review_3)
+```
+## EDA
+```{r}
+#Do books with spoilers have higher ratings?  
+p1 <- ggplot(review_3, aes(x=has_spoiler, y=rating, color = has_spoiler)) + 
+    geom_boxplot() 
+p1
+
 ```
 
 ## Cleaning up Text Data
 ```{r}
 # Remove common words, puncutation, white, space, etc. 
 
-review_corpus <- VCorpus(VectorSource(reviews_2$review_sentences))
+review_corpus <- VCorpus(VectorSource(review_3$review_sentences))
 review_corpus <- tm_map(review_corpus, content_transformer(tolower))
 review_corpus <- tm_map(review_corpus, removeNumbers)
 review_corpus <- tm_map(review_corpus, removePunctuation)
 review_corpus <- tm_map(review_corpus, removeWords, c("the", "and", stopwords("english")))
 review_corpus <- tm_map(review_corpus, stripWhitespace)
 review_corpus <- tm_map(review_corpus, stemDocument)
-inspect(review_corpus[1])
+
+review_corpus <- data.frame(text=sapply(review_corpus, identity), 
+    stringsAsFactors=TRUE)
+
+review_corpus_1 <- review_corpus[1,]
+
+review_corpus_2 <-review_corpus_1 %>% pivot_longer(cols=c(text.1: text.100),
+                    names_to='review_sentences',
+                    values_to='count')
+review_corpus_3 <- review_corpus_2 %>% 
+       rename("count" = "cleaned_review_sentence", 
+              "review_sentence" = "count")
+
+
+
+
+
 
 #Breaking down each sentence to words 
-token <- review_corpus %>% unnest_tokens(word,review_sentences)
-
+token <- review_3 %>% unnest_tokens(word,review_sentences)
+view(token)
 
 (head(get_sentiments("afinn"),10))
 review_sentiment <- token %>% inner_join(get_sentiments("afinn"))
@@ -122,7 +150,7 @@ review_sentiment_1h <- one_hot(as.data.table(review_sentiment),cols = "auto" ,sp
 (review_sentiment_1h$above_average_f<- cut(review_sentiment_1h$above_average_f,c(0,.43,1),labels = c(0,1)))#why the NA? If we want two segments we input three numbers, start, cut and stop values
 
 View(review_sentiment_1h$above_average_f)
-str(college_1h)
+str(review_sentiment_1)
 
 
 #let's check the prevalence 
@@ -184,3 +212,4 @@ perf_logit1 <- confusionMatrix(data = pred_class, reference = data_test$above_av
     positive = "Yes")
 perf_logit1
 ```
+
