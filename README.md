@@ -23,6 +23,9 @@ The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform ana
 [Link for book_spoilers.csv](https://drive.google.com/uc?id=196W2kDoZXRPjzbTjM6uvTidn6aTpsFnS)
 
 ### Data Dictionary
+| Test | #1  | #2  |
+| ------- | --- | --- |
+| Seconds | 301 | 283 |
 
 ### Notes about use of Data
 
