@@ -25,13 +25,21 @@ The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform ana
 ### Data Dictionary
 | Variable | Definition| 
 | bookID | A unique number used to identify each book.| 
+| ------- | --- |
 | title | The name of the book. | 
+| ------- | --- |
 | average_rating | The average rating (out of five stars) for the given book. |
+| ------- | --- |
 | ratings_count | The total number of numeric ratings the book received. | 
+| ------- | --- |
 | text_reviews_count | The total number of written reviews the book received. |
+| ------- | --- |
 | rating | The rating from each reviewer. |
-| publisher | The publishing company of the book. | 
+| ------- | --- |
+| publisher | The publishing company of the book. |
+| ------- | --- |
 | format | The format of the book (paperback vs hardcover). | 
+| ------- | --- |
 | num_pages | The number of pages of each book. |
 
 ### Notes about use of Data
