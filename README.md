@@ -26,16 +26,14 @@ The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform ana
 | Variable | Definition | 
 | ------- | --- |
 | bookID | A unique number used to identify each book.| 
-| title | The name of the book. | 
 | average_rating | The average rating (out of five stars) for the given book. |
-| ratings_count | The total number of numeric ratings the book received. | 
-| text_reviews_count | The total number of written reviews the book received. |
+| rating | The numerical rating, out of five stars, a reviewer gave a given book. | 
+| has_spoiler| Indicates whether a book has a spoiler or not. |
 | rating | The rating from each reviewer. |
-| publisher | The publishing company of the book. |
-| format | The format of the book (paperback vs hardcover). | 
-| num_pages | The number of pages of each book. |
+
 
 ### Notes about use of Data
+Average rating was computed by us based on the data given. 
 
 ## References Section:
 
@@ -45,6 +43,6 @@ The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform ana
 
 ### Links to M1 and M2 assignments
 [M1 assignment](file:///C:/Users/amsha/Downloads/M1P1,%20Samshamo%20.pdf)
-[M2 assignment](file:///C:/Users/amsha/Downloads/MI2.pdf)
+[M2 assignment](https://docs.google.com/document/d/150iemEBRcMvND9n4l-rOIKVf7n7Pg5Nl9x-3jn2PRJY/edit)
 
 
