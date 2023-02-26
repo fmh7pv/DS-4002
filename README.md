@@ -23,7 +23,8 @@ The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform ana
 [Link for book_spoilers.csv](https://drive.google.com/uc?id=196W2kDoZXRPjzbTjM6uvTidn6aTpsFnS)
 
 ### Data Dictionary
-| Variable | Definition| 
+| Variable | Definition | 
+| ------- | --- |
 | bookID | A unique number used to identify each book.| 
 | ------- | --- |
 | title | The name of the book. | 
