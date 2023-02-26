@@ -38,6 +38,15 @@ Average rating was computed by us based on the data given.
 ## References Section:
 
 ### References
+Kolamanvitha, “Twitter sentiment analysis using Logistic Regression”, Nerd for Tech
+
+Mengting Wan, Julian McAuley, "Item Recommendation on Monotonic Behavior Chains", in RecSys'18. [bibtex]
+
+Mengting Wan, Rishabh Misra, Ndapa Nakashole, Julian McAuley, "Fine-Grained Spoiler Detection from Large-Scale Review Corpora", in ACL'19. [bibtex]
+
+S. Mhatre, J. Sampaio, D. Torres, and K. Abhishek, “Text mining and sentiment analysis: Analysis with R,” Simple Talk, 15-Sep-2021. [Online]. Available: https://www.red-gate.com/simple-talk/databases/sql-server/bi-sql-server/text-mining-and-sentiment-analysis-with-r/. 
+
+“UCSD book graph,” UCSD Book Graph. [Online]. Available: https://sites.google.com/eng.ucsd.edu/ucsdbookgraph/home#h.p_VCP_qovwtnn1. 
 
 ### Acknowledgements
 
