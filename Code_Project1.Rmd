@@ -37,6 +37,7 @@ library("tidytext")
 ## Upload data 
 ```{r}
 book_spoilers <-read.csv("book_spoilers.csv")
+book_spoliers <- book_spoliers[1:100,]
 ```
 ## Data Preparation 
 ```{r}
