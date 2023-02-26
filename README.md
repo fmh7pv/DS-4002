@@ -33,7 +33,13 @@ The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform ana
 
 
 ### Notes about use of Data
-Average rating was computed by us based on the data given. 
+Average rating was computed by us based on the data given. Due to the size of the data, we narrowed down the dataset to the first 1000 rows so that the data could be process in the one hour allotted to us by Rivanna.
+
+## Figures Section:
+### Table of Contents
+| Figure Name | Key Takeaways | 
+| ------- | --- |
+
 
 ## References Section:
 
@@ -49,6 +55,7 @@ S. Mhatre, J. Sampaio, D. Torres, and K. Abhishek, “Text mining and sentiment 
 “UCSD book graph,” UCSD Book Graph. [Online]. Available: https://sites.google.com/eng.ucsd.edu/ucsdbookgraph/home#h.p_VCP_qovwtnn1. 
 
 ### Acknowledgements
+Special thanks to Professor Loreto Alonzi and Professor Brian Wright for their guidance.
 
 ### Links to M1 and M2 assignments
 [M1 assignment](https://docs.google.com/document/d/1IInxMDY9oO2tESe-RPept87km-qJ4UMMXPpHO6I1e3A/edit)
