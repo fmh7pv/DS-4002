@@ -42,7 +42,8 @@ Average rating was computed by us based on the data given.
 ### Acknowledgements
 
 ### Links to M1 and M2 assignments
-[M1 assignment](file:///C:/Users/amsha/Downloads/M1P1,%20Samshamo%20.pdf)
+[M1 assignment](https://docs.google.com/document/d/1IInxMDY9oO2tESe-RPept87km-qJ4UMMXPpHO6I1e3A/edit)
+
 [M2 assignment](https://docs.google.com/document/d/150iemEBRcMvND9n4l-rOIKVf7n7Pg5Nl9x-3jn2PRJY/edit)
 
 
