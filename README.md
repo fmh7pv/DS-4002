@@ -33,6 +33,7 @@ The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform ana
 ### Acknowledgements
 
 ### Links to M1 and M2 assignments
-
+[M1 assignment](file:///C:/Users/amsha/Downloads/M1P1,%20Samshamo%20.pdf)
+[M2 assignment](file:///C:/Users/amsha/Downloads/MI2.pdf)
 
 
