@@ -1,0 +1,1 @@
+In order to obtain the dataset we downloaded the json file and converted it to csv (see book_spoilers.ipynb). We initially tried running the data in Rivanna, but seeing as the process was a slow one, we ended up subsetting the data (first 100 rows).
