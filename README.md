@@ -33,7 +33,7 @@ The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform ana
 
 
 ### Notes about use of Data
-Average rating was computed by us based on the data given. Due to the size of the data, we narrowed down the dataset to the first 1000 rows so that the data could be process in the one hour allotted to us by Rivanna.
+Average rating was computed by us based on the data given. Due to the size of the data, we narrowed down the dataset to the first 100000 rows so that the data could be process in the one hour allotted to us by Rivanna.
 
 ## Figures Section:
 ### Table of Contents
