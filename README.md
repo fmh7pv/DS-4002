@@ -29,7 +29,7 @@ The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform ana
 | average_rating | The average rating (out of five stars) for the given book. |
 | rating | The numerical rating, out of five stars, a reviewer gave a given book. | 
 | has_spoiler| Indicates whether a book has a spoiler or not. |
-| rating | The rating from each reviewer. |
+| review | A text comment left by the user. |
 
 
 ### Notes about use of Data
