@@ -14,7 +14,7 @@ To run the .rmd file, he following packages must be installed and loaded: tm, Sn
 ### Usage of Code
 In order to start using the data, we needed to convert the JSON file into a .csv file. The file book_spoilers.ipynb contains the code used to execute this conversion. We started by reading in the JSON file line by line and using the json.loads() method to convert the JSON file into a python dictionary. After doing so we were able to use csv.DictWriter() to convert the python dictionary into a csv file ready for use.
 
-The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform analysis to predict based on textual reviews whether a book will be rated above 4/5 stars. 
+The Project1DS4002.Rmd file is used to read in book_spoilers.csv and perform analysis to predict based on textual reviews whether a book will be rated above 4/5 stars. This code randomly samples 100,000 entries from book_spoilers.csv and then performs factor conversions where appropriate. It cleans up the textual reviews and the utilizes a confusion matrix to display the results.
 
 
 ## Data Section:
