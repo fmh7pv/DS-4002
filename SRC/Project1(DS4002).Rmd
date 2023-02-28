@@ -151,59 +151,18 @@ str(review_sentiment_1h)
 # Prevalence 
 
 ```{r}
+review_sentiment %>% 
+  #group_by(above_average) %>% 
+  #summarise(total = n()) %>% 
+  #mutate(proportion = (total/sum(total))*100)
 
-(review_sentiment_1h$above_average_f<- cut(review_sentiment_1h$above_average_f,c(0,.43,1),labels = c(0,1)))#why the NA? If we want two segments we input three numbers, start, cut and stop values
+review_sentiment$above_average <- as.factor(review_sentiment$above_average)
 
-View(review_sentiment_1h$above_average_f)
-str(review_sentiment_1)
-
-
-#let's check the prevalence 
-(prevalence <- table(review_sentiment_1h$above_average_f)[[2]]/length(review_sentiment_1h$above_average_f))
-
-table(review_sentiment_1h$above_average_f)
 
 ```
 
 #train test and tune 
 ```{r}
-#review_dt <- review_sentiment_1h[,-c("above_average")]
-
-#view(review_dt)
-
-
-#part_index_1 <- caret::createDataPartition(review_sentiment_1h$above_average_f,
-                                           times=1,#number of splits
-                                           p = 0.80,#percentage of split
-                                           groups=1,
-                                           list=FALSE)
-#View(part_index_1)
-#dim(review_dt)
-
-#train <- review_dt[part_index_1,]#index the 80%
-#tune_and_test <- review_dt[-part_index_1, ]#index everything but the 80%
-
-#The we need to use the function again to create the tuning set 
-
-#tune_and_test_index <- createDataPartition(review_sentiment_1h$above_average_f,
-                                           p = .5,
-                                           list = FALSE,
-                                           times = 1)
-
-#tune <- tune_and_test[tune_and_test_index, ]
-#test <- tune_and_test[-tune_and_test_index, ]
-
-#dim(train)
-#dim(tune)
-#dim(test)
-
-#review_sentiment %>% 
-  #group_by(above_average) %>% 
-  #summarise(total = n()) %>% 
-  #mutate(proportion = (total/sum(total))*100)
-
-#review_sentiment$above_average <- as.factor(review_sentiment$above_average)
-
 
 samplesize <- 0.8*nrow(review_sentiment)
 index <- sample(seq_len(nrow(review_sentiment)),size = samplesize)
