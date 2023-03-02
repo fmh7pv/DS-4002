@@ -37,6 +37,8 @@ Average rating was computed by us based on the data given. Due to the size of th
 
 ## Figures Section:
 ### Table of Contents
+| Figure | Key Takeaways | 
+| ------- | --- |
 | Screen Shot 2023-02-28 at 1.12.54 PM.png | This confusion matrix shows us that we were unable to build a model accurately classifies books based on text  | 
 | Box plot  | And EDA question that asks whether a review with spoiler affected the numeric rating |
 | figure figure | this figure demonstrates the removal on NAs in the data set|
