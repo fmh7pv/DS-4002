@@ -56,6 +56,8 @@ S. Mhatre, J. Sampaio, D. Torres, and K. Abhishek, “Text mining and sentiment 
 
 “UCSD book graph,” UCSD Book Graph. [Online]. Available: https://sites.google.com/eng.ucsd.edu/ucsdbookgraph/home#h.p_VCP_qovwtnn1. 
 
+"User Score Classification With Sentiment Analysis: Logistic Regression and K-NN,"  [Online]. Available: https://rpubs.com/Argaadya/529538.
+
 ### Acknowledgements
 Special thanks to Professor Loreto Alonzi and Professor Brian Wright for their guidance.
 
