@@ -59,7 +59,7 @@ S. Mhatre, J. Sampaio, D. Torres, and K. Abhishek, “Text mining and sentiment 
 "User Score Classification With Sentiment Analysis: Logistic Regression and K-NN,"  [Online]. Available: https://rpubs.com/Argaadya/529538.
 
 ### Acknowledgements
-Special thanks to Professor Loreto Alonzi and Professor Brian Wright for their guidance.
+Special thanks to Professor Loreto Alonzi and Daiqing Qi for their guidance.
 
 ### Links to M1 and M2 assignments
 [M1 assignment](https://docs.google.com/document/d/1IInxMDY9oO2tESe-RPept87km-qJ4UMMXPpHO6I1e3A/edit)
