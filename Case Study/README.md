@@ -11,6 +11,6 @@ This case study focuses on the health outcomes of indivduals in HOLC rated local
 Collect the health ratings from the past 5 years 
 
 
-## Code Need and Articles 
+## Coding Walkthrough
 
 [Code Walk through] (https://rpubs.com/heyhaein/560290)
