@@ -7,7 +7,7 @@ This case study focuses on the health outcomes of indivduals in HOLC rated local
 
 
 
-
+# Code Need and Articles 
 [HOLC Ratings] (https://github.com/americanpanorama/Census_HOLC_Research.git)
 
 
