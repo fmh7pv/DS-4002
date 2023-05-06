@@ -20,8 +20,10 @@ The orginial data set looks like this
 | bookID | A unique number used to identify each book.| 
 | reviewID | A unique number used to identify each review.| 
 
-The goal get the data set to this 
+The goal get the dataset to look like this 
 
+| Variable | Definition | 
+| ------- | --- |
 | text | The cleaned review sentences from each user.  | 
 | has_spoiler| Indicates whether a book has a spoiler or not. |
 | bookID | A unique number used to identify each book.| 
