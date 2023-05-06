@@ -2,17 +2,32 @@
 
 This case study relies on text data as indicators of rating, predict when books get a rating of above a 4 or above a 5.
 
-## Data 
+## Data Section:
+Data can be found in the data folder. Its sourced from this [website](https://drive.google.com/uc?id=196W2kDoZXRPjzbTjM6uvTidn6aTpsFnS)
 
-[HOLC Ratings] (https://github.com/americanpanorama/Census_HOLC_Research.git)
+### Data Dictionary
 
-[Health Ratings] (https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb)
 
-Collect the health ratings from the past 5 years 
+| Variable | Definition | 
+| ------- | --- |
+| bookID | A unique number used to identify each book.| 
+| average_rating | The average rating (out of five stars) for the given book. |
+| rating | The numerical rating, out of five stars, a reviewer gave a given book. | 
+| has_spoiler| Indicates whether a book has a spoiler or not. |
+| review | A text comment left by the user for a given book. |
+
+### Data Dictionary
+| Variable | Definition | 
+| ------- | --- |
+| bookID | A unique number used to identify each book.| 
+| average_rating | The average rating (out of five stars) for the given book. |
+| rating | The numerical rating, out of five stars, a reviewer gave a given book. | 
+| has_spoiler| Indicates whether a book has a spoiler or not. |
+| review | A text comment left by the user for a given book. |
 
 
 ## Coding Walkthrough
 
-[Code Walk through] (https://rpubs.com/heyhaein/560290)
+[Code Walk through, EDA](https://www.red-gate.com/simple-talk/databases/sql-server/bi-sql-server/text-mining-and-sentiment-analysis-with-r/)
 
-[M1 assignment](https://docs.google.com/document/d/1IInxMDY9oO2tESe-RPept87km-qJ4UMMXPpHO6I1e3A/edit)
+[Sentiment Analysis](https://rpubs.com/Argaadya/529538)
