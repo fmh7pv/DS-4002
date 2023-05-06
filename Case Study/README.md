@@ -5,7 +5,7 @@ This case study relies on text data as indicators of rating, predict when books 
 ## Data Section:
 Data can be found in the data folder. Its sourced from this [website](https://drive.google.com/uc?id=196W2kDoZXRPjzbTjM6uvTidn6aTpsFnS)
 
-
+Here is the [dataset](https://drive.google.com/file/d/1cx1xl5_ctHvgSSTsOH14CaylIg5dVTR4/view?usp=sharing)
 ### Data Dictionary
 
 The orginial data set looks like this 
