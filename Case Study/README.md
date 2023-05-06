@@ -6,6 +6,10 @@ This case study relies on text data as indicators of rating, predict when books 
 Data can be found in the data folder. Its sourced from this [website](https://drive.google.com/uc?id=196W2kDoZXRPjzbTjM6uvTidn6aTpsFnS)
 
 Here is the [dataset](https://drive.google.com/file/d/1cx1xl5_ctHvgSSTsOH14CaylIg5dVTR4/view?usp=sharing)
+
+We only want 100,000 random reviews. 
+
+
 ### Data Dictionary
 
 The orginial data set looks like this 
@@ -20,7 +24,7 @@ The orginial data set looks like this
 | bookID | A unique number used to identify each book.| 
 | reviewID | A unique number used to identify each review.| 
 
-The goal is to get the dataset to look like this, the data walk through will be assist you in getting to this finalized data set. 
+The goal is to get the dataset to look like this, the data walk through will be assist you in getting to this finalized data set.
 
 | Variable | Definition | 
 | ------- | --- |
@@ -32,6 +36,8 @@ The goal is to get the dataset to look like this, the data walk through will be 
 
 
 ## Coding Walkthrough
+
+The walk throughs will assist you in cleaning up the text and analysis of the data. 
 
 [Code Walk through, EDA](https://www.red-gate.com/simple-talk/databases/sql-server/bi-sql-server/text-mining-and-sentiment-analysis-with-r/)
 
