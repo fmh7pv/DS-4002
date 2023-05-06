@@ -5,25 +5,28 @@ This case study relies on text data as indicators of rating, predict when books 
 ## Data Section:
 Data can be found in the data folder. Its sourced from this [website](https://drive.google.com/uc?id=196W2kDoZXRPjzbTjM6uvTidn6aTpsFnS)
 
+
 ### Data Dictionary
 
+The orginial data set looks like this 
 
 | Variable | Definition | 
 | ------- | --- |
-| bookID | A unique number used to identify each book.| 
-| average_rating | The average rating (out of five stars) for the given book. |
+| userID | A unique number used to identify each user. |
+| timestamp | Timestamp of the review. |
+| review_sentences | Raw review sentences from each user. |
 | rating | The numerical rating, out of five stars, a reviewer gave a given book. | 
 | has_spoiler| Indicates whether a book has a spoiler or not. |
-| review | A text comment left by the user for a given book. |
+| bookID | A unique number used to identify each book.| 
+| reviewID | A unique number used to identify each review.| 
 
-### Data Dictionary
-| Variable | Definition | 
-| ------- | --- |
-| bookID | A unique number used to identify each book.| 
-| average_rating | The average rating (out of five stars) for the given book. |
-| rating | The numerical rating, out of five stars, a reviewer gave a given book. | 
+The goal get the data set to this 
+
+| text | The cleaned review sentences from each user.  | 
 | has_spoiler| Indicates whether a book has a spoiler or not. |
-| review | A text comment left by the user for a given book. |
+| bookID | A unique number used to identify each book.| 
+| above_average | A column indicating whether the books average rating is above 4 or not.  |
+
 
 
 ## Coding Walkthrough
