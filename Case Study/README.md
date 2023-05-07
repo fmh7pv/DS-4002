@@ -1,6 +1,6 @@
 # DS 4002 Case Study: Using text data to predict how a user will rate a book on a numeric scale. 
 
-This case study relies on text data as indicators of rating, the goal is to predict when books get a rating of above a 4 or above a 5.
+This case study relies on text data as indicators of rating, the goal is to predict when books get a rating of above or below average
 
 Before you begin working please read the hook and the materials. These will give you guidance as to context/motivation and the deliverable of this assignment. 
 
