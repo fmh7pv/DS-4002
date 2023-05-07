@@ -26,7 +26,7 @@ The orginial data set looks like this
 | bookID | A unique number used to identify each book.| 
 | reviewID | A unique number used to identify each review.| 
 
-The goal is to get the dataset to look like this, the data walk through will be assist you in getting to this finalized data set.
+The goal is to get the dataset to look like this, the data walk through will assist you in getting to this finalized data set.
 
 | Variable | Definition | 
 | ------- | --- |
